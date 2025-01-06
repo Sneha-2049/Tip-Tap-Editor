@@ -7,6 +7,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import './Tiptap.css';
+import SavedContent from '../SavedContent';
 import { ChromePicker } from 'react-color';
 
 const TiptapEditor = () => {
@@ -41,12 +42,36 @@ const TiptapEditor = () => {
   });
 
   if (!editor) return null;
+  const applyTransformation = (editor, transformFunction) => {
+    const selectedText = editor.state.doc.textBetween(
+      editor.state.selection.from,
+      editor.state.selection.to,
+      ' '
+    );
+    const transformedText = transformFunction(selectedText);
+    editor.chain().focus().insertContent(transformedText).run();
+  };
+
+  // Uppercase
+  const toUppercase = (editor) => {
+    applyTransformation(editor, (text) => text.toUpperCase());
+  };
+
+  // Lowercase
+  const toLowercase = (editor) => {
+    applyTransformation(editor, (text) => text.toLowerCase());
+  };
+
+  // Remove Extra Spaces
+  const removeExtraSpaces = (editor) => {
+    applyTransformation(editor, (text) => text.replace(/\s+/g, ' ').trim());
+  };
+
 
   // Handler to save the editor content
   const handleSave = () => {
     if (editor) {
       const content = editor.getHTML();
-      alert('Data is saved!...')
       setSavedContent(content);
     }
   };
@@ -145,6 +170,10 @@ const TiptapEditor = () => {
                 H{level}
               </button>
             ))}
+            {/* Text Transformation Buttons */}
+            <button onClick={() => toUppercase(editor)}>Uppercase</button>
+            <button onClick={() => toLowercase(editor)}>Lowercase</button>
+            <button onClick={() => removeExtraSpaces(editor)}>Remove Extra Spaces</button>
 
             {/* List Buttons */}
             <button
@@ -200,11 +229,7 @@ const TiptapEditor = () => {
       </div>
 
       {/* Display Saved Content */}
-      <h1 className='header'>Your Saved Content</h1>
-      <div
-        className="savedContent"
-        dangerouslySetInnerHTML={{ __html: savedContent }}
-      />
+      <SavedContent savedContent={savedContent} />
     </div>
   );
 };

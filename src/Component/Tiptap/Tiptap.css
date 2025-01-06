@@ -115,44 +115,6 @@
     background-color: #388e3c;
     transform: scale(0.95);
 }
-
-.save-button {
-    width: 120px;
-    height: 40px;
-    cursor: pointer;
-    margin-top: 20px;
-    border-radius: 5px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-align: center;
-}
-
-.save-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.savedContent {
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    white-space: normal;
-    line-height: 1.5;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-
-.savedContent p {
-    margin: 0;
-}
-
 .ProseMirror {
     background-color: #ffffff;
     padding: 15px;
@@ -187,6 +149,44 @@
 .ProseMirror ol {
     margin: 0;
     padding-left: 20px;
+}
+
+.save-button {
+    width: 120px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+}
+
+.save-button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.savedContent {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    white-space: normal;
+    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.savedContent p {
+    margin: 0;
 }
 
 /* Responsive Design for Tiptap Editor */
