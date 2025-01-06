@@ -138,7 +138,7 @@ const TiptapEditor = () => {
               disabled={!editor.can().chain().focus().toggleStrike().run()}
               className={editor.isActive('strike') ? 'is-active' : ''}
             >
-              Strike
+              <s>Strike</s>
             </button>
 
             {/* Code Button */}
